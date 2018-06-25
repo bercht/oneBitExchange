@@ -1,7 +1,11 @@
 $(document).ready ->
 
-  $('form').submit ->
-    if $('form').attr('action') == '/convert'
+  $source_currency = $('#source_currency')
+  $target_currency = $('#target_currency')
+  
+  $amount = $('#amount')
+  $invertButton = $('#invertButton')
+  convert = ->
       $.ajax '/convert',
           type: 'GET'
           dataType: 'json'
@@ -15,3 +19,19 @@ $(document).ready ->
           success: (data, text, jqXHR) ->
             $('#result').val(data.value)
         return false;
+
+
+  $invertButton.click ->
+    source_currency = $source_currency.val()
+    target_currency = $target_currency.val()
+
+    $source_currency.val(target_currency)
+    $target_currency.val(source_currency)
+
+
+
+
+  
+  $amount.keyup -> convert()
+
+
