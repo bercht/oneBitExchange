@@ -9,4 +9,10 @@ module ExchangesHelper
     ]
   end	
 
+  def crypto_list
+  	[
+  		'BTC', 'LTC', 'ETH', 'LTC', 'BTG'
+  	]
+  end
+
 end

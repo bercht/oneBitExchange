@@ -22,4 +22,16 @@ class ExchangeService
       e.response
     end
   end
+  def perform_crypto
+    begin
+      coinapi_api_key = Rails.application.credentials[Rails.env.to_sym][:coinapi_api_key]
+      url = "https://rest.coinapi.io/v1/exchangerate/#{@source_currency}/#{@target_currency}?apikey=#{coinapi_api_key}"
+      res = RestClient.get url
+      value = JSON.parse(res.body)['rate'].to_f
+      
+      value * @amount
+    rescue RestClient::ExceptionWithResponse => e
+      e.response
+    end
+  end
 end
