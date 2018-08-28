@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'exchanges/index'
   get 'cryptos/index'
-  root 'home#index'
+  root 'exchanges#index'
   get 'convert', to: 'exchanges#convert'
   get 'convert_crypto', to: 'cryptos#convert_crypto'
 
